@@ -2,7 +2,7 @@
 
 Static single-file portfolio for **Nadhif Hirba** (NHADesign). No build step, no dependencies — just one HTML file, images, and a Vercel config.
 
-Live: [nhadesign.com](https://nhadesign.com)
+Live: [nhadesign.com](https://nhadesign.vercel.app)
 
 ## Structure
 
