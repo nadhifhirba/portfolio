@@ -1,0 +1,14 @@
+{
+  "name": "nhadesign-portfolio",
+  "version": "5.0.0",
+  "description": "NHADesign portfolio — static single-file site by Nadhif Hirba",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve . -p 3000",
+    "deploy": "vercel --prod",
+    "preview": "vercel"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

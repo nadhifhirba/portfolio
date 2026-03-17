@@ -1,0 +1,5 @@
+.vercel
+*.json.bak
+lh-report.json
+lighthouse*.json
+node_modules/
