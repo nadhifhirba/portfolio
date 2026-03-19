@@ -1019,6 +1019,30 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && activeId) closePanel(); });
 })();
 
+// ── STATUS SYNC (fetch /data/status.json, update progress bars) ───
+// data-pct values in the HTML are the fallback; the JSON always wins.
+(function(){
+  // Map status.json key → index of .bent in the built section
+  const KEY_ORDER = ['kura', 'wardrobify', 'radius', 'colokkan', 'challenge'];
+  const LABELS = { challenge: function(v){ return Math.round(v/100*52) + ' / 52'; } };
+
+  fetch('/data/status.json')
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(data){
+      var bents = document.querySelectorAll('#built .bent');
+      bents.forEach(function(bent, i){
+        var key = KEY_ORDER[i];
+        if (!key || data[key] == null) return;
+        var pct = data[key];
+        var bar = bent.querySelector('.ep-fill');
+        if (bar) bar.dataset.pct = pct;
+        var label = bent.querySelector('.ep-label');
+        if (label) label.textContent = LABELS[key] ? LABELS[key](pct) : pct + '%';
+      });
+    })
+    .catch(function(){}); // silently fall back to hardcoded values
+})();
+
 // ── EXPAND ROWS (Built + Media) ───────────────────────────────────
 (function(){
   document.querySelectorAll('.bent[role="button"],.ment[role="button"]').forEach(row => {

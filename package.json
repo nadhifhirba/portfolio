@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "npx serve . -p 3000",
     "deploy": "vercel --prod",
-    "preview": "vercel"
+    "preview": "vercel",
+    "sync-status": "node scripts/sync-status.js",
+    "sync-status:dry": "node scripts/sync-status.js --dry-run"
   },
   "engines": {
     "node": ">=18"
